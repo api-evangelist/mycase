@@ -1,0 +1,83 @@
+{
+    "name": "MyCase",
+    "description": "Try MyCase now free for 30 days, no credit card required. We're sure you'll agree with thousands of attorneys who trust MyCase that our software is the best and easiest to use. Get more organized, efficient, & profitable. Simple time tracking, easy doc...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1095-mycase.jpg",
+    "tags": [
+        "api not found",
+        "have api",
+        "office",
+        "social",
+        "telecommunications"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/mycase\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "MyCase",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1095-mycase.jpg",
+            "humanURL": "http:\/\/www.mycaseinc.com\/press\/mycase_launches_app_bar_and_api",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/mycase-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "http:\/\/www.mycaseinc.com\/press\/mycase_launches_app_bar_and_api"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.mutualmind.com\/blog\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/www.mycaseinc.com\/blog\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/mutualmind"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/mycase"
+        },
+        {
+            "type": "Email",
+            "url": "support@mycase.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales@mycase.com"
+        },
+        {
+            "type": "Email",
+            "url": "stephanie.phelan@mycase.com"
+        },
+        {
+            "type": "Email",
+            "url": "sarah.bottorff@mycase.com"
+        },
+        {
+            "type": "Email",
+            "url": "Niki@mycase.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/mycase"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/#!\/mycaseinc"
+        }
+    ]
+}
