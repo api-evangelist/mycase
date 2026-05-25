@@ -1,0 +1,48 @@
+extends: [[spectral:oas, recommended]]
+rules:
+  mycase-operation-summary-title-case:
+    description: Operation summaries must use Title Case (matches MyCase's Stoplight summaries).
+    message: "Operation summary should be Title Case: {{value}}"
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z0-9][\\w'-]*)(\\s+(a|an|and|or|the|for|of|to|in|on|by|at|with|from|as|but|nor|so|yet|per)\\b|\\s+[A-Z0-9][\\w'-]*)*$"
+
+  mycase-operation-id-camel-case:
+    description: Operation IDs must be lowerCamelCase.
+    message: "operationId should be lowerCamelCase: {{value}}"
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  mycase-path-snake-case:
+    description: Path segments (other than path parameters) must be snake_case to match MyCase conventions (case_stages, client_relationships, documents_folder).
+    message: "Path segment is not snake_case: {{path}}"
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^(/([a-z][a-z0-9_]*|\\{[a-zA-Z]+\\}))+$"
+
+  mycase-tag-defined:
+    description: Every operation must include at least one tag.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  mycase-bearer-security:
+    description: All operations must require bearer auth (MyCase Open API is gated).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: security
+      function: defined

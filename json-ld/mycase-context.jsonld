@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "mycase": "https://mycaseapi.stoplight.io/docs/mycase-api-documentation/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Firm": {
+      "@id": "mycase:Firm",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "timeZone": "mycase:time_zone"
+      }
+    },
+
+    "Case": {
+      "@id": "mycase:Case",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "caseNumber": "mycase:case_number",
+        "stage": "mycase:case_stage",
+        "client": "mycase:client",
+        "openedAt": {
+          "@id": "mycase:opened_at",
+          "@type": "xsd:date"
+        },
+        "closedAt": {
+          "@id": "mycase:closed_at",
+          "@type": "xsd:date"
+        }
+      }
+    },
+
+    "CaseStage": {
+      "@id": "mycase:CaseStage",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "practiceArea": "mycase:practice_area"
+      }
+    },
+
+    "Company": {
+      "@id": "mycase:Company",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "primaryEmail": "schema:email",
+        "primaryPhone": "schema:telephone"
+      }
+    },
+
+    "ClientRelationship": {
+      "@id": "mycase:ClientRelationship",
+      "@context": {
+        "id": "mycase:id",
+        "case": "mycase:case",
+        "client": "mycase:client",
+        "role": "mycase:role"
+      }
+    },
+
+    "Document": {
+      "@id": "mycase:Document",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "case": "mycase:case",
+        "folder": "mycase:folder",
+        "contentType": "schema:encodingFormat",
+        "size": "schema:contentSize",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DocumentsFolder": {
+      "@id": "mycase:DocumentsFolder",
+      "@context": {
+        "id": "mycase:id",
+        "name": "schema:name",
+        "case": "mycase:case",
+        "subfolders": "mycase:subfolders",
+        "documents": "mycase:documents"
+      }
+    },
+
+    "Event": {
+      "@id": "mycase:Event",
+      "@context": {
+        "id": "mycase:id",
+        "title": "schema:name",
+        "startsAt": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endsAt": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "allDay": "mycase:all_day",
+        "location": "schema:location",
+        "case": "mycase:case"
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+aid: mycase
+name: MyCase
+description: >-
+  MyCase is a cloud-based legal practice and case management platform
+  used by more than 18,000 law firms for matter management, contacts and
+  companies, calendaring, events, tasks, documents, time tracking,
+  billing and invoicing, payments via LawPay, lead intake, eSignature,
+  and client communications through a secure portal. MyCase was acquired
+  by AffiniPay (now 8am, LLC — which also owns LawPay, CasePeer, and
+  Docketwise) in 2022. In late 2023 MyCase released a public Open API
+  available exclusively on its Advanced tier, with documentation hosted
+  at mycaseapi.stoplight.io. The Open API exposes the firm, cases,
+  contacts, companies, case stages, events, tasks, documents, client
+  relationships, and webhook subscriptions, and is positioned as the
+  integration surface for third-party software vendors building on
+  MyCase.
+type: Index
+position: Provider
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Billing
+  - Calendaring
+  - Case Management
+  - Client Portal
+  - Document Management
+  - Invoicing
+  - Law Firms
+  - Legal
+  - Legal Practice Management
+  - LegalTech
+  - Matter Management
+  - OAuth 2.0
+  - Payments
+  - Practice Management
+  - Time Tracking
+  - Webhooks
+url: https://raw.githubusercontent.com/api-evangelist/mycase/refs/heads/main/apis.yml
+created: '2026-05-25'
+modified: '2026-05-25'
+specificationVersion: '0.20'
+apis:
+  - aid: mycase:open-api
+    name: MyCase Open API
+    description: >-
+      The MyCase Open API is a public REST/JSON API that lets MyCase
+      Advanced-tier subscribers and their integration partners share
+      data with the MyCase platform, programmatically trigger tasks or
+      events, and build connected workflows. The API surface covers the
+      authorized firm, cases, case stages, contacts, companies, client
+      relationships, calendar events, tasks, documents and document
+      folders, and time zones. Documentation is hosted on Stoplight at
+      mycaseapi.stoplight.io. The API is available only to customers on
+      the Advanced subscription tier; access must be requested through
+      MyCase support and certified consultants are listed for
+      implementation assistance.
+    humanURL: https://mycaseapi.stoplight.io/
+    tags:
+      - Cases
+      - Case Stages
+      - Companies
+      - Contacts
+      - Documents
+      - Events
+      - Firm
+      - Legal
+      - Practice Management
+      - REST
+      - Tasks
+    properties:
+      - type: Documentation
+        url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+      - type: Reference
+        url: https://mycaseapi.stoplight.io/
+      - type: Support Article
+        url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+      - type: OpenAPI
+        url: openapi/mycase-open-api-openapi.yml
+      - type: NaftikoCapability
+        url: capabilities/mycase.yaml
+  - aid: mycase:webhooks
+    name: MyCase Webhooks
+    description: >-
+      MyCase Webhooks deliver event notifications when records change in
+      the MyCase platform (for example case, event, task, and document
+      lifecycle events). Webhook subscriptions are documented alongside
+      the Open API on Stoplight and are intended for integration
+      partners that need near real-time triggers rather than polling the
+      REST endpoints.
+    humanURL: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
+    tags:
+      - Events
+      - Legal
+      - Notifications
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
+common:
+  - type: Website
+    url: https://www.mycase.com/
+  - type: Parent Company
+    url: https://www.8am.com/
+  - type: AffiniPay
+    url: https://www.affinipay.com/
+  - type: Pricing
+    url: https://www.mycase.com/pricing/
+  - type: SignUp
+    url: https://www.mycase.com/lp/free-trial/
+  - type: Login
+    url: https://auth.mycase.com/login
+  - type: Portal
+    url: https://mycaseapi.stoplight.io/
+  - type: Documentation
+    url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support
+    url: https://supportcenter.mycase.com/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: Certified Consultants
+    url: https://www.mycase.com/consultants/
+  - type: Blog
+    url: https://www.mycase.com/blog/
+  - type: News
+    url: https://www.mycase.com/news/
+  - type: Webinars
+    url: https://www.mycase.com/webinars/
+  - type: CaseStudies
+    url: https://www.mycase.com/case-studies/
+  - type: Customers
+    url: https://www.mycase.com/customers/
+  - type: Integrations
+    url: https://www.mycase.com/integrations/
+  - type: Mobile
+    url: https://www.mycase.com/features/mobile-app/
+  - type: PrivacyPolicy
+    url: https://www.mycase.com/privacy-policy/
+  - type: TermsOfService
+    url: https://www.mycase.com/terms-of-service/
+  - type: Security
+    url: https://www.mycase.com/security/
+  - type: Careers
+    url: https://www.8am.com/careers/
+  - type: GitHub
+    url: https://github.com/mycase
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/mycase-inc-
+  - type: Twitter
+    url: https://twitter.com/mycaseinc
+  - type: Facebook
+    url: https://www.facebook.com/mycaseinc
+  - type: YouTube
+    url: https://www.youtube.com/user/MyCaseInc
+  - type: JSONLD
+    url: json-ld/mycase-context.jsonld
+  - type: Spectral
+    url: rules/mycase-rules.yml
+  - type: Naftiko Capabilities
+    url: capabilities/mycase.yaml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

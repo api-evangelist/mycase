@@ -1,0 +1,115 @@
+provider: mycase
+name: MyCase
+description: >-
+  Naftiko capabilities profile for the MyCase Open API. Capabilities are
+  mapped only to operations that are confirmed from the public MyCase
+  Stoplight reference. The full request/response schemas are gated behind
+  the authenticated Stoplight site; this profile is intentionally narrow.
+capabilities:
+  - id: mycase.firm.get
+    name: Get authorized firm
+    description: Return the firm record for the current authorized API user.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1firm/get
+    outputs:
+      - id
+      - name
+      - time_zone
+
+  - id: mycase.case_stages.list
+    name: List case stages
+    description: Return the firm's configured case stages.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1case_stages/get
+    outputs:
+      - id
+      - name
+      - practice_area
+
+  - id: mycase.companies.list
+    name: List companies
+    description: Return companies visible to the authorized user.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1companies/get
+    outputs:
+      - id
+      - name
+      - primary_email
+      - primary_phone
+
+  - id: mycase.cases.list_for_client
+    name: List cases for a client
+    description: Return all cases associated with the given client (contact).
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1clients~1{clientId}~1cases/get
+    inputs:
+      - clientId
+    outputs:
+      - id
+      - name
+      - case_number
+      - stage_id
+      - opened_at
+
+  - id: mycase.cases.add_client_relationship
+    name: Add a client relationship to a case
+    description: Attach a contact to a case as a client relationship.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1cases~1{caseId}~1client_relationships/post
+    inputs:
+      - caseId
+      - client_id
+      - role
+    outputs:
+      - id
+      - case_id
+      - client_id
+      - role
+
+  - id: mycase.cases.upload_document
+    name: Upload a document to a case
+    description: Upload a document file to the specified case.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1cases~1{caseId}~1documents/post
+    inputs:
+      - caseId
+      - file
+      - name
+      - folder_id
+    outputs:
+      - id
+      - name
+      - content_type
+      - size
+
+  - id: mycase.cases.get_documents_folder
+    name: Get a case's documents folder
+    description: Return the documents folder tree (subfolders and documents) for the specified case.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1cases~1{caseId}~1documents_folder/get
+    inputs:
+      - caseId
+    outputs:
+      - id
+      - case_id
+      - subfolders
+      - documents
+
+  - id: mycase.events.update
+    name: Update a calendar event
+    description: Update an existing calendar event subject to user/firm privileges.
+    api: mycase:open-api
+    operationRef: openapi/mycase-open-api-openapi.yml#/paths/~1events~1{eventId}/patch
+    inputs:
+      - eventId
+      - title
+      - starts_at
+      - ends_at
+      - all_day
+      - case_id
+      - location
+    outputs:
+      - id
+      - title
+      - starts_at
+      - ends_at
