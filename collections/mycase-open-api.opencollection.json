@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Firm",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Firm of the Current Authorized User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/firm"
+          },
+          "docs": "Return the firm record for the current authorized API user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/0acc0620bdd9e-get-the-firm-of-the-current-authorized-user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Case Stages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Case Stages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/case_stages"
+          },
+          "docs": "Get all firm case stages viewable by the authorized user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/592cc136089e9-get-case-stages."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/companies"
+          },
+          "docs": "Get all firm companies viewable by the authorized user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/eddd20d8e1045-get-companies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Cases for a Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/clients/:clientId/cases",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a client (contact) in MyCase."
+              }
+            ]
+          },
+          "docs": "Return all cases associated with the given client. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/999662f9e0762-get-all-cases-for-a-client."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Client Relationship for a Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mycase.com/cases/:caseId/client_relationships",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a client relationship on the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/2231b17f9f2e9-create-a-client-relationship-for-a-case."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Document for a Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mycase.com/cases/:caseId/documents",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a document to the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/5f9d31af2e726-create-a-document-for-a-case."
+        },
+        {
+          "info": {
+            "name": "Get Case Documents Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/cases/:caseId/documents_folder",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ]
+          },
+          "docs": "Return the documents folder for the case, including subfolders and document references. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/1b7dc53b16e9d-get-case-documents-folder."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update an Individual Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.mycase.com/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing calendar event subject to user/firm privileges. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/4f98681f0927b-update-an-individual-event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
