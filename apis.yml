@@ -1,18 +1,13 @@
 aid: mycase
 name: MyCase
 description: >-
-  MyCase is a cloud-based legal practice and case management platform
-  used by more than 18,000 law firms for matter management, contacts and
-  companies, calendaring, events, tasks, documents, time tracking,
-  billing and invoicing, payments via LawPay, lead intake, eSignature,
-  and client communications through a secure portal. MyCase was acquired
-  by AffiniPay (now 8am, LLC — which also owns LawPay, CasePeer, and
-  Docketwise) in 2022. In late 2023 MyCase released a public Open API
-  available exclusively on its Advanced tier, with documentation hosted
-  at mycaseapi.stoplight.io. The Open API exposes the firm, cases,
-  contacts, companies, case stages, events, tasks, documents, client
-  relationships, and webhook subscriptions, and is positioned as the
-  integration surface for third-party software vendors building on
+  MyCase is a cloud-based legal practice and case management platform used by more than 18,000 law firms for matter
+  management, contacts and companies, calendaring, events, tasks, documents, time tracking, billing and invoicing,
+  payments via LawPay, lead intake, eSignature, and client communications through a secure portal. MyCase was acquired
+  by AffiniPay (now 8am, LLC — which also owns LawPay, CasePeer, and Docketwise) in 2022. In late 2023 MyCase released a
+  public Open API available exclusively on its Advanced tier, with documentation hosted at mycaseapi.stoplight.io. The
+  Open API exposes the firm, cases, contacts, companies, case stages, events, tasks, documents, client relationships,
+  and webhook subscriptions, and is positioned as the integration surface for third-party software vendors building on
   MyCase.
 type: Index
 position: Provider
@@ -43,17 +38,13 @@ apis:
   - aid: mycase:open-api
     name: MyCase Open API
     description: >-
-      The MyCase Open API is a public REST/JSON API that lets MyCase
-      Advanced-tier subscribers and their integration partners share
-      data with the MyCase platform, programmatically trigger tasks or
-      events, and build connected workflows. The API surface covers the
-      authorized firm, cases, case stages, contacts, companies, client
-      relationships, calendar events, tasks, documents and document
-      folders, and time zones. Documentation is hosted on Stoplight at
-      mycaseapi.stoplight.io. The API is available only to customers on
-      the Advanced subscription tier; access must be requested through
-      MyCase support and certified consultants are listed for
-      implementation assistance.
+      The MyCase Open API is a public REST/JSON API that lets MyCase Advanced-tier subscribers and their integration
+      partners share data with the MyCase platform, programmatically trigger tasks or events, and build connected
+      workflows. The API surface covers the authorized firm, cases, case stages, contacts, companies, client
+      relationships, calendar events, tasks, documents and document folders, and time zones. Documentation is hosted on
+      Stoplight at mycaseapi.stoplight.io. The API is available only to customers on the Advanced subscription tier;
+      access must be requested through MyCase support and certified consultants are listed for implementation
+      assistance.
     humanURL: https://mycaseapi.stoplight.io/
     tags:
       - Cases
@@ -76,17 +67,14 @@ apis:
         url: https://supportcenter.mycase.com/en/articles/9370198-open-api
       - type: OpenAPI
         url: openapi/mycase-open-api-openapi.yml
-      - type: NaftikoCapability
-        url: capabilities/mycase.yaml
+      - type: GraphQL
+        url: graphql/mycase-graphql.md
   - aid: mycase:webhooks
     name: MyCase Webhooks
     description: >-
-      MyCase Webhooks deliver event notifications when records change in
-      the MyCase platform (for example case, event, task, and document
-      lifecycle events). Webhook subscriptions are documented alongside
-      the Open API on Stoplight and are intended for integration
-      partners that need near real-time triggers rather than polling the
-      REST endpoints.
+      MyCase Webhooks deliver event notifications when records change in the MyCase platform (for example case, event,
+      task, and document lifecycle events). Webhook subscriptions are documented alongside the Open API on Stoplight and
+      are intended for integration partners that need near real-time triggers rather than polling the REST endpoints.
     humanURL: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
     tags:
       - Events
@@ -157,8 +145,6 @@ common:
     url: json-ld/mycase-context.jsonld
   - type: Spectral
     url: rules/mycase-rules.yml
-  - type: Naftiko Capabilities
-    url: capabilities/mycase.yaml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

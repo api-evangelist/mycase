@@ -1,0 +1,1091 @@
+"""
+MyCase GraphQL Schema
+Conceptual schema derived from the MyCase REST API for legal practice management.
+MyCase is a cloud-based platform used by law firms for matter management, contacts,
+calendaring, tasks, documents, time tracking, billing, invoicing, payments,
+lead intake, eSignature, and client communications.
+
+Documentation: https://mycaseapi.stoplight.io/
+"""
+
+# ──────────────────────────────────────────────
+# Scalars
+# ──────────────────────────────────────────────
+
+scalar DateTime
+scalar Date
+scalar Upload
+scalar JSON
+
+# ──────────────────────────────────────────────
+# Enums
+# ──────────────────────────────────────────────
+
+enum CaseStatus {
+  OPEN
+  CLOSED
+  PENDING
+  ARCHIVED
+}
+
+enum ContactType {
+  PERSON
+  COMPANY
+  LEAD
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  VOID
+  PARTIALLY_PAID
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+  VOIDED
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  ACH
+  CHECK
+  CASH
+  WIRE_TRANSFER
+  OTHER
+}
+
+enum DocumentStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum EventType {
+  HEARING
+  DEPOSITION
+  MEETING
+  DEADLINE
+  REMINDER
+  COURT_DATE
+  OTHER
+}
+
+enum EventRecurrence {
+  NONE
+  DAILY
+  WEEKLY
+  BIWEEKLY
+  MONTHLY
+  YEARLY
+}
+
+enum TimeEntryType {
+  BILLABLE
+  NON_BILLABLE
+  NO_CHARGE
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CONVERTED
+  DISQUALIFIED
+}
+
+enum WebhookStatus {
+  ACTIVE
+  INACTIVE
+  FAILED
+}
+
+enum WebhookEventType {
+  CASE_CREATED
+  CASE_UPDATED
+  CASE_CLOSED
+  CONTACT_CREATED
+  CONTACT_UPDATED
+  DOCUMENT_CREATED
+  DOCUMENT_UPDATED
+  EVENT_CREATED
+  EVENT_UPDATED
+  TASK_CREATED
+  TASK_COMPLETED
+  INVOICE_CREATED
+  INVOICE_SENT
+  PAYMENT_RECEIVED
+  MESSAGE_CREATED
+}
+
+enum UserRole {
+  ADMIN
+  ATTORNEY
+  PARALEGAL
+  STAFF
+  BILLING
+  READ_ONLY
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# ──────────────────────────────────────────────
+# Core Object Types
+# ──────────────────────────────────────────────
+
+type Firm {
+  id: ID!
+  name: String!
+  timeZone: String
+  address: Address
+  phone: String
+  email: String
+  website: String
+  barNumber: String
+  practiceAreas: [String!]
+  subscriptionTier: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  users: [User!]
+  caseStages: [CaseStage!]
+}
+
+type Address {
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+}
+
+type User {
+  id: ID!
+  firmId: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  role: UserRole!
+  isActive: Boolean!
+  phone: String
+  title: String
+  barNumber: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  firm: Firm
+  assignedCases: [Case!]
+  assignedTasks: [Task!]
+  timeEntries: [TimeEntry!]
+}
+
+type CaseStage {
+  id: ID!
+  firmId: ID!
+  name: String!
+  practiceArea: String
+  displayOrder: Int
+  isDefault: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  cases: [Case!]
+}
+
+type Case {
+  id: ID!
+  firmId: ID!
+  name: String!
+  caseNumber: String
+  description: String
+  status: CaseStatus!
+  stageId: ID
+  stage: CaseStage
+  practiceArea: String
+  openedAt: Date
+  closedAt: Date
+  statueOfLimitations: Date
+  assignedUserId: ID
+  assignedUser: User
+  contacts: [ClientRelationship!]
+  tasks: [Task!]
+  events: [Event!]
+  documents: [Document!]
+  timeEntries: [TimeEntry!]
+  invoices: [Invoice!]
+  notes: [Note!]
+  communicationThreads: [CommunicationThread!]
+  tags: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Contact {
+  id: ID!
+  firmId: ID!
+  type: ContactType!
+  firstName: String
+  lastName: String
+  companyName: String
+  email: String
+  phone: String
+  mobilePhone: String
+  address: Address
+  dateOfBirth: Date
+  ssn: String
+  notes: String
+  tags: [String!]
+  isClient: Boolean
+  cases: [ClientRelationship!]
+  documents: [Document!]
+  communicationThreads: [CommunicationThread!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Company {
+  id: ID!
+  firmId: ID!
+  name: String!
+  primaryEmail: String
+  primaryPhone: String
+  website: String
+  address: Address
+  taxId: String
+  notes: String
+  tags: [String!]
+  contacts: [Contact!]
+  cases: [ClientRelationship!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type ClientRelationship {
+  id: ID!
+  caseId: ID!
+  clientId: ID!
+  role: String
+  isPrimary: Boolean
+  case: Case
+  client: Contact
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Event {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  title: String!
+  description: String
+  type: EventType
+  startsAt: DateTime!
+  endsAt: DateTime
+  allDay: Boolean!
+  location: String
+  recurrence: EventRecurrence
+  recurrenceEndDate: Date
+  attendees: [EventAttendee!]
+  reminders: [EventReminder!]
+  case: Case
+  createdByUserId: ID
+  createdByUser: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type EventAttendee {
+  id: ID!
+  eventId: ID!
+  userId: ID
+  contactId: ID
+  name: String
+  email: String
+  responded: Boolean
+  accepted: Boolean
+  user: User
+  contact: Contact
+}
+
+type EventReminder {
+  id: ID!
+  eventId: ID!
+  minutesBefore: Int!
+  method: String
+}
+
+type Task {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  title: String!
+  description: String
+  status: TaskStatus!
+  priority: TaskPriority
+  dueDate: Date
+  dueTime: String
+  assignedUserId: ID
+  assignedUser: User
+  createdByUserId: ID
+  createdByUser: User
+  completedAt: DateTime
+  case: Case
+  subtasks: [Task!]
+  parentTaskId: ID
+  tags: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Document {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  folderId: ID
+  name: String!
+  description: String
+  contentType: String
+  size: Int
+  status: DocumentStatus!
+  version: Int
+  uploadedByUserId: ID
+  uploadedByUser: User
+  downloadUrl: String
+  folder: DocumentFolder
+  case: Case
+  tags: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DocumentFolder {
+  id: ID!
+  firmId: ID!
+  caseId: ID!
+  name: String!
+  parentFolderId: ID
+  parentFolder: DocumentFolder
+  subfolders: [DocumentFolder!]
+  documents: [Document!]
+  case: Case
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type TimeEntry {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  userId: ID!
+  type: TimeEntryType!
+  description: String
+  date: Date!
+  hours: Float!
+  rate: Float
+  amount: Float
+  isBilled: Boolean!
+  invoiceId: ID
+  case: Case
+  user: User
+  invoice: Invoice
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Expense {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  userId: ID
+  description: String!
+  date: Date!
+  amount: Float!
+  isBillable: Boolean!
+  isBilled: Boolean!
+  invoiceId: ID
+  receiptDocumentId: ID
+  case: Case
+  user: User
+  invoice: Invoice
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Invoice {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  clientId: ID
+  invoiceNumber: String!
+  status: InvoiceStatus!
+  issueDate: Date!
+  dueDate: Date
+  subtotal: Float!
+  taxAmount: Float
+  discountAmount: Float
+  totalAmount: Float!
+  paidAmount: Float!
+  balanceDue: Float!
+  notes: String
+  lineItems: [InvoiceLineItem!]
+  payments: [Payment!]
+  case: Case
+  client: Contact
+  sentAt: DateTime
+  paidAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type InvoiceLineItem {
+  id: ID!
+  invoiceId: ID!
+  description: String!
+  quantity: Float!
+  rate: Float!
+  amount: Float!
+  timeEntryId: ID
+  expenseId: ID
+  timeEntry: TimeEntry
+  expense: Expense
+}
+
+type Payment {
+  id: ID!
+  firmId: ID!
+  invoiceId: ID
+  clientId: ID
+  amount: Float!
+  status: PaymentStatus!
+  method: PaymentMethod
+  transactionId: String
+  processedAt: DateTime
+  notes: String
+  invoice: Invoice
+  client: Contact
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Note {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  contactId: ID
+  content: String!
+  isPinned: Boolean!
+  createdByUserId: ID
+  createdByUser: User
+  case: Case
+  contact: Contact
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type CommunicationThread {
+  id: ID!
+  firmId: ID!
+  caseId: ID
+  contactId: ID
+  subject: String
+  messages: [Message!]
+  participants: [CommunicationParticipant!]
+  case: Case
+  contact: Contact
+  createdAt: DateTime
+  updatedAt: DateTime
+  lastMessageAt: DateTime
+}
+
+type Message {
+  id: ID!
+  threadId: ID!
+  senderId: ID
+  senderType: String
+  content: String!
+  isRead: Boolean!
+  attachments: [Document!]
+  sentAt: DateTime!
+  thread: CommunicationThread
+}
+
+type CommunicationParticipant {
+  id: ID!
+  threadId: ID!
+  userId: ID
+  contactId: ID
+  user: User
+  contact: Contact
+}
+
+type Lead {
+  id: ID!
+  firmId: ID!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  status: LeadStatus!
+  source: String
+  practiceArea: String
+  notes: String
+  assignedUserId: ID
+  assignedUser: User
+  convertedContactId: ID
+  convertedCaseId: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type WebhookSubscription {
+  id: ID!
+  firmId: ID!
+  url: String!
+  status: WebhookStatus!
+  eventTypes: [WebhookEventType!]!
+  secret: String
+  lastTriggeredAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type TimeZone {
+  id: String!
+  name: String!
+  offset: String!
+  observesDst: Boolean!
+}
+
+type Tag {
+  id: ID!
+  firmId: ID!
+  name: String!
+  color: String
+  createdAt: DateTime
+}
+
+# ──────────────────────────────────────────────
+# Connection / Pagination Types
+# ──────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+type CaseConnection {
+  edges: [CaseEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CaseEdge {
+  node: Case!
+  cursor: String!
+}
+
+type ContactConnection {
+  edges: [ContactEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ContactEdge {
+  node: Contact!
+  cursor: String!
+}
+
+type InvoiceConnection {
+  edges: [InvoiceEdge!]!
+  pageInfo: PageInfo!
+}
+
+type InvoiceEdge {
+  node: Invoice!
+  cursor: String!
+}
+
+type TaskConnection {
+  edges: [TaskEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TaskEdge {
+  node: Task!
+  cursor: String!
+}
+
+type DocumentConnection {
+  edges: [DocumentEdge!]!
+  pageInfo: PageInfo!
+}
+
+type DocumentEdge {
+  node: Document!
+  cursor: String!
+}
+
+type TimeEntryConnection {
+  edges: [TimeEntryEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TimeEntryEdge {
+  node: TimeEntry!
+  cursor: String!
+}
+
+type PaymentConnection {
+  edges: [PaymentEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PaymentEdge {
+  node: Payment!
+  cursor: String!
+}
+
+# ──────────────────────────────────────────────
+# Input Types
+# ──────────────────────────────────────────────
+
+input AddressInput {
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+}
+
+input CreateCaseInput {
+  name: String!
+  caseNumber: String
+  description: String
+  stageId: ID
+  practiceArea: String
+  openedAt: Date
+  statueOfLimitations: Date
+  assignedUserId: ID
+  tags: [String!]
+}
+
+input UpdateCaseInput {
+  name: String
+  caseNumber: String
+  description: String
+  status: CaseStatus
+  stageId: ID
+  practiceArea: String
+  openedAt: Date
+  closedAt: Date
+  statueOfLimitations: Date
+  assignedUserId: ID
+  tags: [String!]
+}
+
+input CaseFilterInput {
+  status: CaseStatus
+  stageId: ID
+  practiceArea: String
+  assignedUserId: ID
+  openedAfter: Date
+  openedBefore: Date
+  searchQuery: String
+}
+
+input CreateContactInput {
+  type: ContactType!
+  firstName: String
+  lastName: String
+  companyName: String
+  email: String
+  phone: String
+  mobilePhone: String
+  address: AddressInput
+  dateOfBirth: Date
+  notes: String
+  tags: [String!]
+}
+
+input UpdateContactInput {
+  type: ContactType
+  firstName: String
+  lastName: String
+  companyName: String
+  email: String
+  phone: String
+  mobilePhone: String
+  address: AddressInput
+  dateOfBirth: Date
+  notes: String
+  tags: [String!]
+}
+
+input CreateClientRelationshipInput {
+  clientId: ID!
+  role: String
+  isPrimary: Boolean
+}
+
+input CreateEventInput {
+  caseId: ID
+  title: String!
+  description: String
+  type: EventType
+  startsAt: DateTime!
+  endsAt: DateTime
+  allDay: Boolean
+  location: String
+  recurrence: EventRecurrence
+  recurrenceEndDate: Date
+  attendeeUserIds: [ID!]
+  attendeeContactIds: [ID!]
+}
+
+input UpdateEventInput {
+  title: String
+  description: String
+  type: EventType
+  startsAt: DateTime
+  endsAt: DateTime
+  allDay: Boolean
+  location: String
+  recurrence: EventRecurrence
+  recurrenceEndDate: Date
+  caseId: ID
+  attendeeUserIds: [ID!]
+  attendeeContactIds: [ID!]
+}
+
+input EventFilterInput {
+  caseId: ID
+  type: EventType
+  startsAfter: DateTime
+  startsBefore: DateTime
+  attendeeUserId: ID
+  searchQuery: String
+}
+
+input CreateTaskInput {
+  caseId: ID
+  title: String!
+  description: String
+  priority: TaskPriority
+  dueDate: Date
+  dueTime: String
+  assignedUserId: ID
+  parentTaskId: ID
+  tags: [String!]
+}
+
+input UpdateTaskInput {
+  title: String
+  description: String
+  status: TaskStatus
+  priority: TaskPriority
+  dueDate: Date
+  dueTime: String
+  assignedUserId: ID
+  tags: [String!]
+}
+
+input TaskFilterInput {
+  caseId: ID
+  status: TaskStatus
+  priority: TaskPriority
+  assignedUserId: ID
+  dueBefore: Date
+  dueAfter: Date
+  searchQuery: String
+}
+
+input CreateTimeEntryInput {
+  caseId: ID
+  type: TimeEntryType!
+  description: String
+  date: Date!
+  hours: Float!
+  rate: Float
+}
+
+input UpdateTimeEntryInput {
+  type: TimeEntryType
+  description: String
+  date: Date
+  hours: Float
+  rate: Float
+}
+
+input TimeEntryFilterInput {
+  caseId: ID
+  userId: ID
+  type: TimeEntryType
+  isBilled: Boolean
+  dateAfter: Date
+  dateBefore: Date
+}
+
+input CreateInvoiceInput {
+  caseId: ID
+  clientId: ID!
+  invoiceNumber: String
+  issueDate: Date!
+  dueDate: Date
+  timeEntryIds: [ID!]
+  expenseIds: [ID!]
+  notes: String
+}
+
+input UpdateInvoiceInput {
+  status: InvoiceStatus
+  issueDate: Date
+  dueDate: Date
+  notes: String
+}
+
+input InvoiceFilterInput {
+  caseId: ID
+  clientId: ID
+  status: InvoiceStatus
+  issuedAfter: Date
+  issuedBefore: Date
+}
+
+input RecordPaymentInput {
+  invoiceId: ID!
+  amount: Float!
+  method: PaymentMethod
+  transactionId: String
+  processedAt: DateTime
+  notes: String
+}
+
+input CreateWebhookInput {
+  url: String!
+  eventTypes: [WebhookEventType!]!
+  secret: String
+}
+
+input UpdateWebhookInput {
+  url: String
+  status: WebhookStatus
+  eventTypes: [WebhookEventType!]
+}
+
+input CreateLeadInput {
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  source: String
+  practiceArea: String
+  notes: String
+  assignedUserId: ID
+}
+
+input UpdateLeadInput {
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  status: LeadStatus
+  source: String
+  practiceArea: String
+  notes: String
+  assignedUserId: ID
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+# ──────────────────────────────────────────────
+# Query Root
+# ──────────────────────────────────────────────
+
+type Query {
+  # Firm
+  firm: Firm!
+
+  # Users
+  users: [User!]!
+  user(id: ID!): User
+
+  # Case Stages
+  caseStages: [CaseStage!]!
+  caseStage(id: ID!): CaseStage
+
+  # Cases
+  cases(filter: CaseFilterInput, pagination: PaginationInput, sortBy: String, sortOrder: SortOrder): CaseConnection!
+  case(id: ID!): Case
+  casesByClient(clientId: ID!): [Case!]!
+
+  # Contacts
+  contacts(searchQuery: String, type: ContactType, pagination: PaginationInput): ContactConnection!
+  contact(id: ID!): Contact
+
+  # Companies
+  companies(searchQuery: String, pagination: PaginationInput): [Company!]!
+  company(id: ID!): Company
+
+  # Events
+  events(filter: EventFilterInput, pagination: PaginationInput): [Event!]!
+  event(id: ID!): Event
+
+  # Tasks
+  tasks(filter: TaskFilterInput, pagination: PaginationInput): TaskConnection!
+  task(id: ID!): Task
+
+  # Documents
+  documents(caseId: ID, pagination: PaginationInput): DocumentConnection!
+  document(id: ID!): Document
+  caseDocumentsFolder(caseId: ID!): DocumentFolder
+
+  # Time Entries
+  timeEntries(filter: TimeEntryFilterInput, pagination: PaginationInput): TimeEntryConnection!
+  timeEntry(id: ID!): TimeEntry
+
+  # Expenses
+  expenses(caseId: ID, isBilled: Boolean, pagination: PaginationInput): [Expense!]!
+  expense(id: ID!): Expense
+
+  # Invoices
+  invoices(filter: InvoiceFilterInput, pagination: PaginationInput): InvoiceConnection!
+  invoice(id: ID!): Invoice
+
+  # Payments
+  payments(invoiceId: ID, clientId: ID, pagination: PaginationInput): PaymentConnection!
+  payment(id: ID!): Payment
+
+  # Notes
+  notes(caseId: ID, contactId: ID): [Note!]!
+  note(id: ID!): Note
+
+  # Communication Threads
+  communicationThreads(caseId: ID, contactId: ID): [CommunicationThread!]!
+  communicationThread(id: ID!): CommunicationThread
+
+  # Leads
+  leads(status: LeadStatus, assignedUserId: ID): [Lead!]!
+  lead(id: ID!): Lead
+
+  # Webhooks
+  webhookSubscriptions: [WebhookSubscription!]!
+  webhookSubscription(id: ID!): WebhookSubscription
+
+  # Time Zones
+  timeZones: [TimeZone!]!
+
+  # Tags
+  tags: [Tag!]!
+}
+
+# ──────────────────────────────────────────────
+# Mutation Root
+# ──────────────────────────────────────────────
+
+type Mutation {
+  # Cases
+  createCase(input: CreateCaseInput!): Case!
+  updateCase(id: ID!, input: UpdateCaseInput!): Case!
+  closeCase(id: ID!, closedAt: Date): Case!
+  deleteCase(id: ID!): Boolean!
+
+  # Client Relationships
+  createClientRelationship(caseId: ID!, input: CreateClientRelationshipInput!): ClientRelationship!
+  deleteClientRelationship(id: ID!): Boolean!
+
+  # Contacts
+  createContact(input: CreateContactInput!): Contact!
+  updateContact(id: ID!, input: UpdateContactInput!): Contact!
+  deleteContact(id: ID!): Boolean!
+
+  # Companies
+  createCompany(name: String!, primaryEmail: String, primaryPhone: String, address: AddressInput, website: String): Company!
+  updateCompany(id: ID!, name: String, primaryEmail: String, primaryPhone: String, address: AddressInput, website: String): Company!
+  deleteCompany(id: ID!): Boolean!
+
+  # Events
+  createEvent(input: CreateEventInput!): Event!
+  updateEvent(id: ID!, input: UpdateEventInput!): Event!
+  deleteEvent(id: ID!): Boolean!
+
+  # Tasks
+  createTask(input: CreateTaskInput!): Task!
+  updateTask(id: ID!, input: UpdateTaskInput!): Task!
+  completeTask(id: ID!): Task!
+  deleteTask(id: ID!): Boolean!
+
+  # Documents
+  uploadDocument(caseId: ID!, file: Upload!, name: String, folderId: ID): Document!
+  updateDocument(id: ID!, name: String, folderId: ID, description: String): Document!
+  deleteDocument(id: ID!): Boolean!
+  createDocumentFolder(caseId: ID!, name: String!, parentFolderId: ID): DocumentFolder!
+
+  # Time Entries
+  createTimeEntry(input: CreateTimeEntryInput!): TimeEntry!
+  updateTimeEntry(id: ID!, input: UpdateTimeEntryInput!): TimeEntry!
+  deleteTimeEntry(id: ID!): Boolean!
+
+  # Expenses
+  createExpense(caseId: ID, description: String!, date: Date!, amount: Float!, isBillable: Boolean): Expense!
+  updateExpense(id: ID!, description: String, date: Date, amount: Float, isBillable: Boolean): Expense!
+  deleteExpense(id: ID!): Boolean!
+
+  # Invoices
+  createInvoice(input: CreateInvoiceInput!): Invoice!
+  updateInvoice(id: ID!, input: UpdateInvoiceInput!): Invoice!
+  sendInvoice(id: ID!): Invoice!
+  voidInvoice(id: ID!): Invoice!
+  deleteInvoice(id: ID!): Boolean!
+
+  # Payments
+  recordPayment(input: RecordPaymentInput!): Payment!
+  voidPayment(id: ID!): Payment!
+
+  # Notes
+  createNote(caseId: ID, contactId: ID, content: String!, isPinned: Boolean): Note!
+  updateNote(id: ID!, content: String, isPinned: Boolean): Note!
+  deleteNote(id: ID!): Boolean!
+
+  # Communication Threads
+  createCommunicationThread(caseId: ID, contactId: ID, subject: String): CommunicationThread!
+  sendMessage(threadId: ID!, content: String!, attachmentDocumentIds: [ID!]): Message!
+  markMessageRead(messageId: ID!): Message!
+
+  # Leads
+  createLead(input: CreateLeadInput!): Lead!
+  updateLead(id: ID!, input: UpdateLeadInput!): Lead!
+  convertLead(id: ID!, createCase: Boolean): Lead!
+  deleteLead(id: ID!): Boolean!
+
+  # Webhooks
+  createWebhookSubscription(input: CreateWebhookInput!): WebhookSubscription!
+  updateWebhookSubscription(id: ID!, input: UpdateWebhookInput!): WebhookSubscription!
+  deleteWebhookSubscription(id: ID!): Boolean!
+}
