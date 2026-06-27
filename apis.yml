@@ -93,7 +93,7 @@ common:
     url: https://www.affinipay.com/
   - type: Pricing
     url: https://www.mycase.com/pricing/
-  - type: SignUp
+  - type: Signup
     url: https://www.mycase.com/lp/free-trial/
   - type: Login
     url: https://auth.mycase.com/login

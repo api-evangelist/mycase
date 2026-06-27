@@ -2,17 +2,13 @@
   "repo": "mycase",
   "feeds": [
     {
-      "source": "https://www.mycase.com/blog/feed/",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://www.mycase.com/consultants/",
-      "feed_url": "https://www.mycase.com/consultants/",
-      "title": "",
+      "source": "https://www.mycase.com/blog/",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:56:07Z",
+  "agent_pulled": "2026-06-27"
 }
