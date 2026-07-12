@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mycase-open-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer token issued through the MyCase Open API onboarding flow. The exact authorization
+    endpoint is documented inside the authenticated Stoplight reference.
+  sources:
+  - openapi/mycase-open-api-openapi.yml

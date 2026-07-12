@@ -85,6 +85,10 @@ apis:
       - type: Documentation
         url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
 common:
+  - type: DomainSecurity
+    url: security/mycase-domain-security.yml
+  - type: Authentication
+    url: authentication/mycase-authentication.yml
   - type: Website
     url: https://www.mycase.com/
   - type: Parent Company
