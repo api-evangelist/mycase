@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: MyCase Open Case Stages Documents API
+  version: '1.0'
+  description: 'Partial, profile-only OpenAPI description of the publicly documented MyCase
+
+    Open API surface, hand-assembled from the Stoplight reference at
+
+    https://mycaseapi.stoplight.io/ and the MyCase Open API support article at
+
+    https://supportcenter.mycase.com/en/articles/9370198-open-api.
+
+
+    Only resources whose existence is confirmed from MyCase''s public
+
+    documentation are represented here: the authorized firm, cases (per client),
+
+    case stages, companies, client relationships on a case, calendar events,
+
+    tasks, documents and document folders, and time zones. Request and response
+
+    schemas are intentionally minimal — full schemas are gated behind the
+
+    Stoplight reference, which requires sign-in to view request/response bodies
+
+    in detail. Authentication is documented by MyCase as a per-firm credential
+
+    flow obtained through MyCase support; the security scheme below uses HTTP
+
+    bearer as a placeholder for the issued access token.
+
+
+    This document is part of the api-evangelist/mycase profile and is intended
+
+    for catalog and tooling purposes, not for client code generation.
+
+    '
+  contact:
+    name: MyCase Support
+    url: https://supportcenter.mycase.com/
+  license:
+    name: MyCase Terms of Service
+    url: https://www.mycase.com/terms-of-service/
+servers:
+- url: https://api.mycase.com
+  description: MyCase Open API (production). The exact base URL is documented inside the authenticated Stoplight reference; this value is a placeholder consistent with MyCase's public hostnames.
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Documents and document folders associated with a case.
+paths:
+  /cases/{caseId}/documents:
+    parameters:
+    - $ref: '#/components/parameters/CaseId'
+    post:
+      tags:
+      - Documents
+      summary: Create a Document for a Case
+      operationId: createDocumentForCase
+      description: Upload a document to the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/5f9d31af2e726-create-a-document-for-a-case.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+      responses:
+        '201':
+          description: Document created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /cases/{caseId}/documents_folder:
+    parameters:
+    - $ref: '#/components/parameters/CaseId'
+    get:
+      tags:
+      - Documents
+      summary: Get Case Documents Folder
+      operationId: getCaseDocumentsFolder
+      description: Return the documents folder for the case, including subfolders and document references. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/1b7dc53b16e9d-get-case-documents-folder.
+      responses:
+        '200':
+          description: The case documents folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentsFolder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    DocumentInput:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+        name:
+          type: string
+        folder_id:
+          type: string
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        case_id:
+          type: string
+        folder_id:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    DocumentsFolder:
+      type: object
+      properties:
+        id:
+          type: string
+        case_id:
+          type: string
+        name:
+          type: string
+        subfolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentsFolder'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Request body failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      description: The unique identifier for a case in MyCase.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token issued through the MyCase Open API onboarding flow. The exact authorization endpoint is documented inside the authenticated Stoplight reference.

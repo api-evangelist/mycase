@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: MyCase Open Case Stages API
+  version: '1.0'
+  description: 'Partial, profile-only OpenAPI description of the publicly documented MyCase
+
+    Open API surface, hand-assembled from the Stoplight reference at
+
+    https://mycaseapi.stoplight.io/ and the MyCase Open API support article at
+
+    https://supportcenter.mycase.com/en/articles/9370198-open-api.
+
+
+    Only resources whose existence is confirmed from MyCase''s public
+
+    documentation are represented here: the authorized firm, cases (per client),
+
+    case stages, companies, client relationships on a case, calendar events,
+
+    tasks, documents and document folders, and time zones. Request and response
+
+    schemas are intentionally minimal — full schemas are gated behind the
+
+    Stoplight reference, which requires sign-in to view request/response bodies
+
+    in detail. Authentication is documented by MyCase as a per-firm credential
+
+    flow obtained through MyCase support; the security scheme below uses HTTP
+
+    bearer as a placeholder for the issued access token.
+
+
+    This document is part of the api-evangelist/mycase profile and is intended
+
+    for catalog and tooling purposes, not for client code generation.
+
+    '
+  contact:
+    name: MyCase Support
+    url: https://supportcenter.mycase.com/
+  license:
+    name: MyCase Terms of Service
+    url: https://www.mycase.com/terms-of-service/
+servers:
+- url: https://api.mycase.com
+  description: MyCase Open API (production). The exact base URL is documented inside the authenticated Stoplight reference; this value is a placeholder consistent with MyCase's public hostnames.
+security:
+- bearerAuth: []
+tags:
+- name: Case Stages
+  description: Configured case stages for the firm.
+paths:
+  /case_stages:
+    get:
+      tags:
+      - Case Stages
+      summary: Get Case Stages
+      operationId: getCaseStages
+      description: Get all firm case stages viewable by the authorized user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/592cc136089e9-get-case-stages.
+      responses:
+        '200':
+          description: A list of case stages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CaseStage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CaseStage:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        practice_area:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token issued through the MyCase Open API onboarding flow. The exact authorization endpoint is documented inside the authenticated Stoplight reference.

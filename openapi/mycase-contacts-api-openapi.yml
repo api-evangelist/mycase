@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: MyCase Open Case Stages Contacts API
+  version: '1.0'
+  description: 'Partial, profile-only OpenAPI description of the publicly documented MyCase
+
+    Open API surface, hand-assembled from the Stoplight reference at
+
+    https://mycaseapi.stoplight.io/ and the MyCase Open API support article at
+
+    https://supportcenter.mycase.com/en/articles/9370198-open-api.
+
+
+    Only resources whose existence is confirmed from MyCase''s public
+
+    documentation are represented here: the authorized firm, cases (per client),
+
+    case stages, companies, client relationships on a case, calendar events,
+
+    tasks, documents and document folders, and time zones. Request and response
+
+    schemas are intentionally minimal — full schemas are gated behind the
+
+    Stoplight reference, which requires sign-in to view request/response bodies
+
+    in detail. Authentication is documented by MyCase as a per-firm credential
+
+    flow obtained through MyCase support; the security scheme below uses HTTP
+
+    bearer as a placeholder for the issued access token.
+
+
+    This document is part of the api-evangelist/mycase profile and is intended
+
+    for catalog and tooling purposes, not for client code generation.
+
+    '
+  contact:
+    name: MyCase Support
+    url: https://supportcenter.mycase.com/
+  license:
+    name: MyCase Terms of Service
+    url: https://www.mycase.com/terms-of-service/
+servers:
+- url: https://api.mycase.com
+  description: MyCase Open API (production). The exact base URL is documented inside the authenticated Stoplight reference; this value is a placeholder consistent with MyCase's public hostnames.
+security:
+- bearerAuth: []
+tags:
+- name: Contacts
+  description: People and client relationships associated with cases.
+paths:
+  /cases/{caseId}/client_relationships:
+    parameters:
+    - $ref: '#/components/parameters/CaseId'
+    post:
+      tags:
+      - Contacts
+      summary: Create a Client Relationship for a Case
+      operationId: createClientRelationshipForCase
+      description: Create a client relationship on the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/2231b17f9f2e9-create-a-client-relationship-for-a-case.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRelationshipInput'
+      responses:
+        '201':
+          description: Client relationship created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientRelationship'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Request body failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      description: The unique identifier for a case in MyCase.
+      schema:
+        type: string
+  schemas:
+    ClientRelationship:
+      type: object
+      properties:
+        id:
+          type: string
+        case_id:
+          type: string
+        client_id:
+          type: string
+        role:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    ClientRelationshipInput:
+      type: object
+      required:
+      - client_id
+      properties:
+        client_id:
+          type: string
+        role:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token issued through the MyCase Open API onboarding flow. The exact authorization endpoint is documented inside the authenticated Stoplight reference.
