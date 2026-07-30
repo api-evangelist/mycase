@@ -10,9 +10,21 @@ description: >-
   and webhook subscriptions, and is positioned as the integration surface for third-party software vendors building on
   MyCase.
 type: Index
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mycase.png
 tags:
   - Billing
   - Calendaring
@@ -35,55 +47,148 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-  - aid: mycase:open-api
-    name: MyCase Open API
-    description: >-
-      The MyCase Open API is a public REST/JSON API that lets MyCase Advanced-tier subscribers and their integration
-      partners share data with the MyCase platform, programmatically trigger tasks or events, and build connected
-      workflows. The API surface covers the authorized firm, cases, case stages, contacts, companies, client
-      relationships, calendar events, tasks, documents and document folders, and time zones. Documentation is hosted on
-      Stoplight at mycaseapi.stoplight.io. The API is available only to customers on the Advanced subscription tier;
-      access must be requested through MyCase support and certified consultants are listed for implementation
-      assistance.
-    humanURL: https://mycaseapi.stoplight.io/
-    tags:
-      - Cases
-      - Case Stages
-      - Companies
-      - Contacts
-      - Documents
-      - Events
-      - Firm
-      - Legal
-      - Practice Management
-      - REST
-      - Tasks
-    properties:
-      - type: Documentation
-        url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
-      - type: Reference
-        url: https://mycaseapi.stoplight.io/
-      - type: Support Article
-        url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-      - type: OpenAPI
-        url: openapi/mycase-open-api-openapi.yml
-      - type: GraphQL
-        url: graphql/mycase-graphql.md
-  - aid: mycase:webhooks
-    name: MyCase Webhooks
-    description: >-
-      MyCase Webhooks deliver event notifications when records change in the MyCase platform (for example case, event,
-      task, and document lifecycle events). Webhook subscriptions are documented alongside the Open API on Stoplight and
-      are intended for integration partners that need near real-time triggers rather than polling the REST endpoints.
-    humanURL: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
-    tags:
-      - Events
-      - Legal
-      - Notifications
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
+- aid: mycase:webhooks
+  name: MyCase Webhooks
+  description: >-
+    MyCase Webhooks deliver event notifications when records change in the MyCase platform (for example
+    case, event, task, and document lifecycle events). Webhook subscriptions are documented alongside
+    the Open API on Stoplight and are intended for integration partners that need near real-time triggers
+    rather than polling the REST endpoints.
+  humanURL: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
+  tags:
+  - Events
+  - Legal
+  - Notifications
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
+- aid: mycase:mycase-case-stages-api
+  name: MyCase Case Stages API
+  description: Configured case stages for the firm.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Case Stages
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-case-stages-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-cases-api
+  name: MyCase Cases API
+  description: Cases (matters) for the firm, and case-scoped sub-resources.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Cases
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-cases-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-companies-api
+  name: MyCase Companies API
+  description: Companies visible to the authorized user.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-companies-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-contacts-api
+  name: MyCase Contacts API
+  description: People and client relationships associated with cases.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-contacts-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-documents-api
+  name: MyCase Documents API
+  description: Documents and document folders associated with a case.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-documents-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-events-api
+  name: MyCase Events API
+  description: Calendar events on the firm calendar.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-events-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
+- aid: mycase:mycase-firm-api
+  name: MyCase Firm API
+  description: The authorized firm of the current API user.
+  humanURL: https://mycaseapi.stoplight.io/
+  tags:
+  - Firm
+  properties:
+  - type: OpenAPI
+    url: openapi/mycase-firm-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://mycaseapi.stoplight.io/docs/mycase-api-documentation/k5xpc4jyhkom7-getting-started
+  - type: Reference
+    url: https://mycaseapi.stoplight.io/
+  - type: Support Article
+    url: https://supportcenter.mycase.com/en/articles/9370198-open-api
+  - type: GraphQL
+    url: graphql/mycase-graphql.md
 common:
   - type: AgenticAccess
     url: agentic-access/mycase-agentic-access.yml
