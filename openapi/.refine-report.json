@@ -1,0 +1,26 @@
+{
+  "provider": "mycase",
+  "sources": [
+    "mycase-case-stages-api-openapi.yml",
+    "mycase-cases-api-openapi.yml",
+    "mycase-companies-api-openapi.yml",
+    "mycase-contacts-api-openapi.yml",
+    "mycase-documents-api-openapi.yml",
+    "mycase-events-api-openapi.yml",
+    "mycase-firm-api-openapi.yml"
+  ],
+  "outputs": [
+    "mycase-case-stages-api-openapi.yml",
+    "mycase-cases-api-openapi.yml",
+    "mycase-companies-api-openapi.yml",
+    "mycase-contacts-api-openapi.yml",
+    "mycase-documents-api-openapi.yml",
+    "mycase-events-api-openapi.yml",
+    "mycase-firm-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
