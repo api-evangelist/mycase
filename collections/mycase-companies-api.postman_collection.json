@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "bf40d4a2-2dc9-4f6b-aba0-714bd6ab4008",
+      "name": "Companies",
+      "description": {
+        "content": "Companies visible to the authorized user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5b9409b-5f36-4959-aacf-188d8097f672",
+          "name": "Get Companies",
+          "request": {
+            "name": "Get Companies",
+            "description": {
+              "content": "Get all firm companies viewable by the authorized user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/eddd20d8e1045-get-companies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1585b5a-0514-4e35-8e3a-03e84adb4382",
+              "name": "A list of companies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"primary_email\": \"9SPPGs@fqJzsvUXzgEbmZjEccJgEuvP.spb\",\n    \"primary_phone\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"primary_email\": \"f5f1vV@NqfxusFFtELDrEy.ncxz\",\n    \"primary_phone\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f8e0b56-0535-402f-aab9-e26e68762b1b",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mycase.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "edf1b71c-2d48-491d-a8d7-6bfeb77f3568",
+    "name": "MyCase Open Case Stages Companies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, profile-only OpenAPI description of the publicly documented MyCase\nOpen API surface, hand-assembled from the Stoplight reference at\nhttps://mycaseapi.stoplight.io/ and the MyCase Open API support article at\nhttps://supportcenter.mycase.com/en/articles/9370198-open-api.\n\nOnly resources whose existence is confirmed from MyCase's public\ndocumentation are represented here: the authorized firm, cases (per client),\ncase stages, companies, client relationships on a case, calendar events,\ntasks, documents and document folders, and time zones. Request and response\nschemas are intentionally minimal — full schemas are gated behind the\nStoplight reference, which requires sign-in to view request/response bodies\nin detail. Authentication is documented by MyCase as a per-firm credential\nflow obtained through MyCase support; the security scheme below uses HTTP\nbearer as a placeholder for the issued access token.\n\nThis document is part of the api-evangelist/mycase profile and is intended\nfor catalog and tooling purposes, not for client code generation.\n\n\nContact Support:\n Name: MyCase Support",
+      "type": "text/plain"
+    }
+  }
+}

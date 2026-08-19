@@ -1,0 +1,282 @@
+{
+  "item": [
+    {
+      "id": "29cbba76-3a2a-4a24-b81c-17d57d29ca60",
+      "name": "Contacts",
+      "description": {
+        "content": "People and client relationships associated with cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27faab18-f471-4b49-95e9-d526ede4b72d",
+          "name": "Create a Client Relationship for a Case",
+          "request": {
+            "name": "Create a Client Relationship for a Case",
+            "description": {
+              "content": "Create a client relationship on the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/2231b17f9f2e9-create-a-client-relationship-for-a-case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases",
+                ":caseId",
+                "client_relationships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "caseId",
+                  "description": "(Required) The unique identifier for a case in MyCase."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f6b4478-82f4-4db3-9867-4a94ebe9369a",
+              "name": "Client relationship created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "client_relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"case_id\": \"string\",\n  \"client_id\": \"string\",\n  \"role\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a13bb75e-f669-4398-a0e5-6e4fbee6d9f5",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "client_relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d71799ce-4c5b-44df-988b-9bf803c3a6a5",
+              "name": "Request body failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "client_relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mycase.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f832e62e-ebdb-4644-a89e-40a7c498f787",
+    "name": "MyCase Open Case Stages Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, profile-only OpenAPI description of the publicly documented MyCase\nOpen API surface, hand-assembled from the Stoplight reference at\nhttps://mycaseapi.stoplight.io/ and the MyCase Open API support article at\nhttps://supportcenter.mycase.com/en/articles/9370198-open-api.\n\nOnly resources whose existence is confirmed from MyCase's public\ndocumentation are represented here: the authorized firm, cases (per client),\ncase stages, companies, client relationships on a case, calendar events,\ntasks, documents and document folders, and time zones. Request and response\nschemas are intentionally minimal — full schemas are gated behind the\nStoplight reference, which requires sign-in to view request/response bodies\nin detail. Authentication is documented by MyCase as a per-firm credential\nflow obtained through MyCase support; the security scheme below uses HTTP\nbearer as a placeholder for the issued access token.\n\nThis document is part of the api-evangelist/mycase profile and is intended\nfor catalog and tooling purposes, not for client code generation.\n\n\nContact Support:\n Name: MyCase Support",
+      "type": "text/plain"
+    }
+  }
+}

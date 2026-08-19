@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open Case Stages Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Document for a Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mycase.com/cases/:caseId/documents",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a document to the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/5f9d31af2e726-create-a-document-for-a-case."
+        },
+        {
+          "info": {
+            "name": "Get Case Documents Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/cases/:caseId/documents_folder",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ]
+          },
+          "docs": "Return the documents folder for the case, including subfolders and document references. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/1b7dc53b16e9d-get-case-documents-folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

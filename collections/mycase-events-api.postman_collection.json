@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "02c04bc8-5f10-4e56-aa73-3220512d3f25",
+      "name": "Events",
+      "description": {
+        "content": "Calendar events on the firm calendar.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a73af32-494a-40a9-a69b-81ece52a1107",
+          "name": "Update an Individual Event",
+          "request": {
+            "name": "Update an Individual Event",
+            "description": {
+              "content": "Update an existing calendar event subject to user/firm privileges. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/4f98681f0927b-update-an-individual-event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\",\n  \"all_day\": \"<boolean>\",\n  \"case_id\": \"<string>\",\n  \"location\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a026d9c-02f7-44f7-8473-8ec9e7e9722b",
+              "name": "Updated event.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\",\n  \"all_day\": \"<boolean>\",\n  \"case_id\": \"<string>\",\n  \"location\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"starts_at\": \"1958-07-24T16:20:58.885Z\",\n  \"ends_at\": \"1988-04-28T18:32:06.359Z\",\n  \"all_day\": true,\n  \"case_id\": \"string\",\n  \"location\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2620fc7-8033-4455-ae17-7cd686bbd5d7",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\",\n  \"all_day\": \"<boolean>\",\n  \"case_id\": \"<string>\",\n  \"location\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16f97cb3-561f-4832-8abe-33a94956ee65",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\",\n  \"all_day\": \"<boolean>\",\n  \"case_id\": \"<string>\",\n  \"location\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mycase.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cef38606-568f-40aa-aecc-09811fa239be",
+    "name": "MyCase Open Case Stages Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, profile-only OpenAPI description of the publicly documented MyCase\nOpen API surface, hand-assembled from the Stoplight reference at\nhttps://mycaseapi.stoplight.io/ and the MyCase Open API support article at\nhttps://supportcenter.mycase.com/en/articles/9370198-open-api.\n\nOnly resources whose existence is confirmed from MyCase's public\ndocumentation are represented here: the authorized firm, cases (per client),\ncase stages, companies, client relationships on a case, calendar events,\ntasks, documents and document folders, and time zones. Request and response\nschemas are intentionally minimal — full schemas are gated behind the\nStoplight reference, which requires sign-in to view request/response bodies\nin detail. Authentication is documented by MyCase as a per-firm credential\nflow obtained through MyCase support; the security scheme below uses HTTP\nbearer as a placeholder for the issued access token.\n\nThis document is part of the api-evangelist/mycase profile and is intended\nfor catalog and tooling purposes, not for client code generation.\n\n\nContact Support:\n Name: MyCase Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "9b46a84f-3b3c-4379-8e91-7f0eddc08074",
+      "name": "Firm",
+      "description": {
+        "content": "The authorized firm of the current API user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2b7c6a7-acf9-4e56-8aab-3fc821d69328",
+          "name": "Get the Firm of the Current Authorized User",
+          "request": {
+            "name": "Get the Firm of the Current Authorized User",
+            "description": {
+              "content": "Return the firm record for the current authorized API user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/0acc0620bdd9e-get-the-firm-of-the-current-authorized-user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "firm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94661703-8115-451f-bc48-5566f9f03278",
+              "name": "Firm record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "firm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"time_zone\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cccd326-89f7-4a5f-9b06-93cc1248ffac",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "firm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mycase.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e6cba20-2d2a-479d-8603-cec814eb4f7e",
+    "name": "MyCase Open Case Stages Firm API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, profile-only OpenAPI description of the publicly documented MyCase\nOpen API surface, hand-assembled from the Stoplight reference at\nhttps://mycaseapi.stoplight.io/ and the MyCase Open API support article at\nhttps://supportcenter.mycase.com/en/articles/9370198-open-api.\n\nOnly resources whose existence is confirmed from MyCase's public\ndocumentation are represented here: the authorized firm, cases (per client),\ncase stages, companies, client relationships on a case, calendar events,\ntasks, documents and document folders, and time zones. Request and response\nschemas are intentionally minimal — full schemas are gated behind the\nStoplight reference, which requires sign-in to view request/response bodies\nin detail. Authentication is documented by MyCase as a per-firm credential\nflow obtained through MyCase support; the security scheme below uses HTTP\nbearer as a placeholder for the issued access token.\n\nThis document is part of the api-evangelist/mycase profile and is intended\nfor catalog and tooling purposes, not for client code generation.\n\n\nContact Support:\n Name: MyCase Support",
+      "type": "text/plain"
+    }
+  }
+}

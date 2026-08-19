@@ -1,0 +1,568 @@
+{
+  "item": [
+    {
+      "id": "a7e38832-dce1-4e45-9df3-d75246ff810a",
+      "name": "Documents",
+      "description": {
+        "content": "Documents and document folders associated with a case.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bbca2b4b-5d0b-47f9-85fc-e6f82a01a376",
+          "name": "Create a Document for a Case",
+          "request": {
+            "name": "Create a Document for a Case",
+            "description": {
+              "content": "Upload a document to the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/5f9d31af2e726-create-a-document-for-a-case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases",
+                ":caseId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "caseId",
+                  "description": "(Required) The unique identifier for a case in MyCase."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "folder_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66e1ea6b-8728-41f5-a153-bee61a1c8ab8",
+              "name": "Document created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "folder_id",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"case_id\": \"string\",\n  \"folder_id\": \"string\",\n  \"content_type\": \"string\",\n  \"size\": 4628,\n  \"created_at\": \"1967-08-30T20:44:03.395Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcdff6a2-1a7d-4013-9180-494525c216ee",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "folder_id",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55fdecd9-c64e-463a-ac19-32799472911f",
+              "name": "Request body failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "folder_id",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1516f40-ce17-42d8-b134-d05075e67583",
+          "name": "Get Case Documents Folder",
+          "request": {
+            "name": "Get Case Documents Folder",
+            "description": {
+              "content": "Return the documents folder for the case, including subfolders and document references. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/1b7dc53b16e9d-get-case-documents-folder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases",
+                ":caseId",
+                "documents_folder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "caseId",
+                  "description": "(Required) The unique identifier for a case in MyCase."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8caf9512-cf94-495f-a622-e14ba0e081b2",
+              "name": "The case documents folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents_folder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"case_id\": \"string\",\n  \"name\": \"string\",\n  \"subfolders\": [\n    {\n      \"id\": \"string\",\n      \"case_id\": \"string\",\n      \"name\": \"string\",\n      \"subfolders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/DocumentsFolder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/DocumentsFolder detected>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"case_id\": \"string\",\n          \"folder_id\": \"string\",\n          \"content_type\": \"string\",\n          \"size\": 6459,\n          \"created_at\": \"2007-04-22T08:27:39.163Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"case_id\": \"string\",\n          \"folder_id\": \"string\",\n          \"content_type\": \"string\",\n          \"size\": 7326,\n          \"created_at\": \"1961-04-27T02:42:27.207Z\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"case_id\": \"string\",\n      \"name\": \"string\",\n      \"subfolders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/DocumentsFolder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/DocumentsFolder detected>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"case_id\": \"string\",\n          \"folder_id\": \"string\",\n          \"content_type\": \"string\",\n          \"size\": 4273,\n          \"created_at\": \"1992-08-13T10:52:19.498Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"case_id\": \"string\",\n          \"folder_id\": \"string\",\n          \"content_type\": \"string\",\n          \"size\": 2415,\n          \"created_at\": \"1967-08-21T23:27:40.470Z\"\n        }\n      ]\n    }\n  ],\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"case_id\": \"string\",\n      \"folder_id\": \"string\",\n      \"content_type\": \"string\",\n      \"size\": 7883,\n      \"created_at\": \"1969-11-01T21:53:58.966Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"case_id\": \"string\",\n      \"folder_id\": \"string\",\n      \"content_type\": \"string\",\n      \"size\": 7268,\n      \"created_at\": \"1979-09-30T18:54:02.043Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06c9aef3-44a9-404f-b0d6-82cb37bfaac2",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents_folder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77a6a1c8-eeb7-4770-b3a5-8cc80f6ae51c",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId",
+                    "documents_folder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) The unique identifier for a case in MyCase."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mycase.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0b587014-1e2b-4618-8548-eb3809fb8eea",
+    "name": "MyCase Open Case Stages Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, profile-only OpenAPI description of the publicly documented MyCase\nOpen API surface, hand-assembled from the Stoplight reference at\nhttps://mycaseapi.stoplight.io/ and the MyCase Open API support article at\nhttps://supportcenter.mycase.com/en/articles/9370198-open-api.\n\nOnly resources whose existence is confirmed from MyCase's public\ndocumentation are represented here: the authorized firm, cases (per client),\ncase stages, companies, client relationships on a case, calendar events,\ntasks, documents and document folders, and time zones. Request and response\nschemas are intentionally minimal — full schemas are gated behind the\nStoplight reference, which requires sign-in to view request/response bodies\nin detail. Authentication is documented by MyCase as a per-firm credential\nflow obtained through MyCase support; the security scheme below uses HTTP\nbearer as a placeholder for the issued access token.\n\nThis document is part of the api-evangelist/mycase profile and is intended\nfor catalog and tooling purposes, not for client code generation.\n\n\nContact Support:\n Name: MyCase Support",
+      "type": "text/plain"
+    }
+  }
+}

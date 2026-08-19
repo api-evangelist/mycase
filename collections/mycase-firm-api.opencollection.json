@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open Case Stages Firm API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Firm",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Firm of the Current Authorized User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/firm"
+          },
+          "docs": "Return the firm record for the current authorized API user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/0acc0620bdd9e-get-the-firm-of-the-current-authorized-user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

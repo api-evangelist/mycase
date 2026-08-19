@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open Case Stages Companies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/companies"
+          },
+          "docs": "Get all firm companies viewable by the authorized user. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/eddd20d8e1045-get-companies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

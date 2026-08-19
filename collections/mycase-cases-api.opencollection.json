@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open Case Stages Cases API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Cases for a Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mycase.com/clients/:clientId/cases",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a client (contact) in MyCase."
+              }
+            ]
+          },
+          "docs": "Return all cases associated with the given client. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/999662f9e0762-get-all-cases-for-a-client."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

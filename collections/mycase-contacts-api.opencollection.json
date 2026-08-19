@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MyCase Open Case Stages Contacts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Client Relationship for a Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mycase.com/cases/:caseId/client_relationships",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for a case in MyCase."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a client relationship on the specified case. Documented at https://mycaseapi.stoplight.io/docs/mycase-api-documentation/2231b17f9f2e9-create-a-client-relationship-for-a-case."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
