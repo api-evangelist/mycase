@@ -30,6 +30,23 @@ tags:
   - Calendaring
   - Case Management
   - Client Portal
+  - Document-Management
+  - Invoicing
+  - Law Firms
+  - Legal
+  - Legal Practice Management
+  - Legal Tech
+  - Matter Management
+  - Authentication
+  - Payments
+  - Practice Management
+  - Time Tracking
+  - Webhook
+tags_raw:
+  - Billing
+  - Calendaring
+  - Case Management
+  - Client Portal
   - Document Management
   - Invoicing
   - Law Firms
@@ -56,6 +73,11 @@ apis:
     rather than polling the REST endpoints.
   humanURL: https://mycaseapi.stoplight.io/docs/mycase-api-documentation/fdtu5r8u47pku-webhooks
   tags:
+  - Event
+  - Legal
+  - Notification
+  - Webhook
+  tags_raw:
   - Events
   - Legal
   - Notifications
@@ -158,6 +180,8 @@ apis:
   description: Calendar events on the firm calendar.
   humanURL: https://mycaseapi.stoplight.io/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
