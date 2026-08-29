@@ -1,0 +1,24 @@
+slug: mycase
+provider: MyCase
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Cases
+  spec_file: mycase-cases-api-openapi.yml
+  capability_id: BC-150.50
+  capability_id_l1: BC-150
+  capability_name: Legal Operations Management
+  confidence: 0.7
+  evidence: GET /clients/{clientId}/cases 'Get All Cases for a Client' — schema Case
+  reason: Cases here are legal matters in a law-firm practice management system; retrieving a client's
+    matters is matter management, which sits under Legal Operations Management.

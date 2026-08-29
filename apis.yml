@@ -226,6 +226,9 @@ apis:
   - type: GraphQL
     url: graphql/mycase-graphql.md
 common:
+  - type: CapabilityMap
+    url: capabilities/mycase-capability-edges.yml
+    name: MyCase Business Capability Map
   - type: AgenticAccess
     url: agentic-access/mycase-agentic-access.yml
   - type: DomainSecurity
