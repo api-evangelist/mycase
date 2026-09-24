@@ -43,7 +43,7 @@ tags:
   - Calendaring
   - Case Management
   - Client Portal
-  - Document-Management
+  - Document Management
   - Invoicing
   - Law Firms
   - Legal
@@ -72,6 +72,7 @@ tags_raw:
   - Practice Management
   - Time Tracking
   - Webhooks
+  - Document-Management
 url: https://raw.githubusercontent.com/api-evangelist/mycase/refs/heads/main/apis.yml
 created: '2026-05-25'
 modified: '2026-05-25'
@@ -114,8 +115,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-cases-api
   name: MyCase Cases API
   description: Cases (matters) for the firm, and case-scoped sub-resources.
@@ -132,8 +131,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-companies-api
   name: MyCase Companies API
   description: Companies visible to the authorized user.
@@ -150,8 +147,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-contacts-api
   name: MyCase Contacts API
   description: People and client relationships associated with cases.
@@ -168,8 +163,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-documents-api
   name: MyCase Documents API
   description: Documents and document folders associated with a case.
@@ -186,8 +179,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-events-api
   name: MyCase Events API
   description: Calendar events on the firm calendar.
@@ -206,8 +197,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 - aid: mycase:mycase-firm-api
   name: MyCase Firm API
   description: The authorized firm of the current API user.
@@ -224,8 +213,6 @@ apis:
     url: https://mycaseapi.stoplight.io/
   - type: Support Article
     url: https://supportcenter.mycase.com/en/articles/9370198-open-api
-  - type: GraphQL
-    url: graphql/mycase-graphql.md
 common:
   - type: CapabilityMap
     url: capabilities/mycase-capability-edges.yml
