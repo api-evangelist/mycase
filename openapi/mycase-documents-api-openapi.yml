@@ -72,17 +72,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    DocumentInput:
+    Error:
       type: object
-      required:
-      - file
       properties:
-        file:
+        message:
           type: string
-          format: binary
-        name:
-          type: string
-        folder_id:
+        code:
           type: string
     DocumentsFolder:
       type: object
@@ -101,12 +96,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Document'
-    Error:
+    DocumentInput:
       type: object
+      required:
+      - file
       properties:
-        message:
+        file:
           type: string
-        code:
+          format: binary
+        name:
+          type: string
+        folder_id:
           type: string
     Document:
       type: object
@@ -141,14 +141,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

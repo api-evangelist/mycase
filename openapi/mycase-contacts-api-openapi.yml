@@ -51,15 +51,14 @@ paths:
         '422':
           $ref: '#/components/responses/UnprocessableEntity'
 components:
-  parameters:
-    CaseId:
-      name: caseId
-      in: path
-      required: true
-      description: The unique identifier for a case in MyCase.
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     ClientRelationship:
       type: object
       properties:
@@ -70,13 +69,6 @@ components:
         client_id:
           type: string
         role:
-          type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
           type: string
     ClientRelationshipInput:
       type: object
@@ -100,6 +92,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      description: The unique identifier for a case in MyCase.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

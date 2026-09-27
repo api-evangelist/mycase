@@ -56,25 +56,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        starts_at:
-          type: string
-          format: date-time
-        ends_at:
-          type: string
-          format: date-time
-        all_day:
-          type: boolean
-        case_id:
-          type: string
-        location:
-          type: string
     Error:
       type: object
       properties:
@@ -99,15 +80,34 @@ components:
           type: string
         location:
           type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        starts_at:
+          type: string
+          format: date-time
+        ends_at:
+          type: string
+          format: date-time
+        all_day:
+          type: boolean
+        case_id:
+          type: string
+        location:
+          type: string
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
