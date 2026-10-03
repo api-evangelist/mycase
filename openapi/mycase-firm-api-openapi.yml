@@ -42,6 +42,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     Firm:
       type: object
       description: The firm record for the authorized user. Fields are gated behind the authenticated Stoplight reference; this shape is illustrative.
@@ -53,13 +60,6 @@ components:
         time_zone:
           type: string
           description: IANA time zone identifier used for the firm calendar.
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.

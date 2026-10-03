@@ -51,43 +51,15 @@ paths:
         '422':
           $ref: '#/components/responses/UnprocessableEntity'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
-    ClientRelationship:
-      type: object
-      properties:
-        id:
-          type: string
-        case_id:
-          type: string
-        client_id:
-          type: string
-        role:
-          type: string
-    ClientRelationshipInput:
-      type: object
-      required:
-      - client_id
-      properties:
-        client_id:
-          type: string
-        role:
-          type: string
   responses:
-    UnprocessableEntity:
-      description: Request body failed validation.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    UnprocessableEntity:
+      description: Request body failed validation.
       content:
         application/json:
           schema:
@@ -100,6 +72,34 @@ components:
       description: The unique identifier for a case in MyCase.
       schema:
         type: string
+  schemas:
+    ClientRelationship:
+      type: object
+      properties:
+        id:
+          type: string
+        case_id:
+          type: string
+        client_id:
+          type: string
+        role:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    ClientRelationshipInput:
+      type: object
+      required:
+      - client_id
+      properties:
+        client_id:
+          type: string
+        role:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

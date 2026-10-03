@@ -44,6 +44,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     Company:
       type: object
       properties:
@@ -55,13 +62,6 @@ components:
           type: string
           format: email
         primary_phone:
-          type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
           type: string
   responses:
     Unauthorized:
