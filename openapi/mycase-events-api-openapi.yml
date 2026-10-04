@@ -55,36 +55,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    EventInput:
+    Error:
       type: object
       properties:
-        title:
+        message:
           type: string
-        starts_at:
-          type: string
-          format: date-time
-        ends_at:
-          type: string
-          format: date-time
-        all_day:
-          type: boolean
-        case_id:
-          type: string
-        location:
+        code:
           type: string
     Event:
       type: object
@@ -105,13 +82,36 @@ components:
           type: string
         location:
           type: string
-    Error:
+    EventInput:
       type: object
       properties:
-        message:
+        title:
           type: string
-        code:
+        starts_at:
           type: string
+          format: date-time
+        ends_at:
+          type: string
+          format: date-time
+        all_day:
+          type: boolean
+        case_id:
+          type: string
+        location:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

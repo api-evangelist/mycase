@@ -71,6 +71,61 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    DocumentInput:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+        name:
+          type: string
+        folder_id:
+          type: string
+    DocumentsFolder:
+      type: object
+      properties:
+        id:
+          type: string
+        case_id:
+          type: string
+        name:
+          type: string
+        subfolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentsFolder'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        case_id:
+          type: string
+        folder_id:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.
@@ -90,61 +145,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    DocumentsFolder:
-      type: object
-      properties:
-        id:
-          type: string
-        case_id:
-          type: string
-        name:
-          type: string
-        subfolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentsFolder'
-        documents:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-    DocumentInput:
-      type: object
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-        name:
-          type: string
-        folder_id:
-          type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
-    Document:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        case_id:
-          type: string
-        folder_id:
-          type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
   parameters:
     CaseId:
       name: caseId

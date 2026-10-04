@@ -41,14 +41,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
     Firm:
       type: object
       description: The firm record for the authorized user. Fields are gated behind the authenticated Stoplight reference; this shape is illustrative.
@@ -60,13 +60,13 @@ components:
         time_zone:
           type: string
           description: IANA time zone identifier used for the firm calendar.
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
